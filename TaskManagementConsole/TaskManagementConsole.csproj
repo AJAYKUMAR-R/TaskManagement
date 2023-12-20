@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
+    <ProjectReference Include="..\DataAcessLayer\DataAcessLayer.csproj" />
+    <ProjectReference Include="..\LoginLayer\LoginLayer.csproj" />
+  </ItemGroup>
+
 </Project>

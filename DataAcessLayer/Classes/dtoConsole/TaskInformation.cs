@@ -13,7 +13,7 @@ namespace DataAcessLayer.Classes.dtoConsole
         InProgress
 
     }
-    internal class TaskInformation
+    public class TaskInformation
     {
         public int TaskId {  get; set; }
         public string TaskDescription { get; set; } = string.Empty;

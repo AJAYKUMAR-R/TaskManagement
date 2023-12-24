@@ -5,20 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAcessLayer.Classes.designPattern
+namespace DataAcessLayer.Classes.designPattern.singletonClas
 {
     //For Applying the Dependency Injection
-    public interface ISingleton
+    public interface IUserData
     {
         public UserData GetInstance { get; }
+        public List<UserProfile> UserProfiles { get; }
     }
     //if it is internal we can't access outside the library by adding 
     //References
-    public sealed class UserData : ISingleton
+    //Singleton class
+    public sealed class UserData : IUserData
     {
         //Backing Filed
         //readonly field can only be set in the Constructor
-        private  UserData? _userData;
+        private UserData? _userData;
 
         //To prevent from accesing using object created 
         public UserData() { }
@@ -42,7 +44,7 @@ namespace DataAcessLayer.Classes.designPattern
             get
             {
                 //If two thread accesing it will access one after another
-                lock(new object())
+                lock (new object())
                 {
                     if (_userData == null)
                     {
@@ -59,10 +61,10 @@ namespace DataAcessLayer.Classes.designPattern
         //internal access withthin the Folder
         public List<UserProfile> UserProfiles
         {
-            get { return this._userList;}
-            
+            get { return _userList; }
+
         }
 
-      
+
     }
 }

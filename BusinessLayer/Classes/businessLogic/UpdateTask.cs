@@ -20,23 +20,45 @@ namespace BusinessLayer.Classes.businessLogic
             
         }
 
-        public bool UpdateTaskDetails(TaskInformation task,int clol)
+        public bool UpdateTaskDetails(int id, string input)
         {
-            var lastTask = _userTask.UserTask.Where((obj) => obj.TaskId == task.TaskId)
-                .FirstOrDefault();
-
-            if(lastTask is not null)
+            foreach (var lastTask in _userTask.UserTask)
             {
-                lastTask.TaskId = task.TaskId;  
-                lastTask.TaskDescription = task.TaskDescription;
-                lastTask.Status = task.Status;
-                lastTask.DueDate = task.DueDate;
-                return true;
+                if(lastTask.TaskId == id)
+                {
+                    string[] strings = input.Split(",");
+                    var field = int.TryParse(strings[0], out int result);
+                    if (result == 1)
+                    {
+                        lastTask.DueDate = Convert.ToDateTime(strings[0]);
+                    }
+                    else if (result == 0)
+                    {
+                        lastTask.TaskDescription = strings[0];
+                    }
+                    else if (result == 2)
+                    {
+                        Status status;
+                        if (strings[0].ToLower() == "inprogress")
+                        {
+                            status = Status.InProgress;
+                        }
+                        else if (strings[0].ToLower() == "achived")
+                        {
+                            status = Status.Achived;
+                        }
+                        else
+                        {
+                            status = Status.Failed;
+                        }
+                        lastTask.Status = status;
+                    }
+                    return true;
+                   
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
+           
         }
     }
 }

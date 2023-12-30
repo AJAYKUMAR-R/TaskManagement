@@ -9,6 +9,6 @@ namespace BusinessLayer.Interfaces.businessAbstraction
 {
     public interface IUpdateTask
     {
-        public bool UpdateTaskDetails(TaskInformation task, int clol);
+        public bool UpdateTaskDetails(int id,string input);
     }
 }

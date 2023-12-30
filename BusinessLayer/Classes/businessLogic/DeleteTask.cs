@@ -20,11 +20,12 @@ namespace BusinessLayer.Classes.businessLogic
 
         public bool DeleteTaskDetails(int id)
         {
+
             var lastTask = _userTask.UserTask.Where((obj) => obj.TaskId == id)
-                .FirstOrDefault();
-            if(lastTask is bool)
+               .FirstOrDefault();
+            if (lastTask is not null)
             {
-                return true;
+                return _userTask.UserTask.Remove(lastTask); 
             }
             else
             {

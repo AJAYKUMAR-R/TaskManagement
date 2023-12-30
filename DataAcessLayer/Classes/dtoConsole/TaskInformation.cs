@@ -8,7 +8,7 @@ namespace DataAcessLayer.Classes.dtoConsole
 {
     public enum Status
     {
-        Deleted,
+        Failed,
         Achived,
         InProgress
 

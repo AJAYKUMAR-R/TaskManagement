@@ -19,11 +19,11 @@ namespace BusinessLayer.Classes.businessLogic
            this._userData = _userData;
           
         }
-        public bool CreateTasks(TaskInformation task, string username,out bool isActive)
+        public bool CreateTasks(TaskInformation task,out bool isActive)
         {
             //out parameter should be assaigned otherwise it won't work
-             isActive = _userData.GetInstance.UserProfiles.
-                 FirstOrDefault((obj) => obj.UserName == username).IsActive;
+             isActive = _userData.UserProfiles.
+                 FirstOrDefault((obj) => obj.UserName == this.userName).IsActive;
             if (isActive)
             {
                 _userTask.UserTask.Add(task);

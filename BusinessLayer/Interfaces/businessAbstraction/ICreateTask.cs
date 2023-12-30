@@ -9,6 +9,6 @@ namespace BusinessLayer.Interfaces.businessAbstraction
 {
     public interface ICreateTask
     {
-        public bool CreateTasks(TaskInformation task, string username,out bool isActive);
+        public bool CreateTasks(TaskInformation task,out bool isActive);
     }
 }

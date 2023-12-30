@@ -14,7 +14,7 @@ namespace LoginLayer.Classes.LoginConsole
        
         public BLLogin(IUserData singleton) {
             //using the class
-            this._userData = singleton.GetInstance;
+            this._userData = singleton;
             
         }
 

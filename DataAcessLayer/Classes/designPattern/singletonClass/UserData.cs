@@ -10,17 +10,13 @@ namespace DataAcessLayer.Classes.designPattern.singletonClas
     //For Applying the Dependency Injection
     public interface IUserData
     {
-        public UserData GetInstance { get; }
         public List<UserProfile> UserProfiles { get; }
     }
     //if it is internal we can't access outside the library by adding 
     //References
-    //Singleton class
     public sealed class UserData : IUserData
     {
-        //Backing Filed
-        //readonly field can only be set in the Constructor
-        private UserData? _userData;
+      
 
         //To prevent from accesing using object created 
         public UserData() { }
@@ -34,30 +30,18 @@ namespace DataAcessLayer.Classes.designPattern.singletonClas
                 IsActive = true,
                 Password = "Ajay@1234",
                 CreatedDate = DateTime.Now.AddYears(-1),
+            },
+             new UserProfile
+            {
+                UserName = "Ajay",
+                IsActive = true,
+                Password = "Ajay@1234",
+                CreatedDate = DateTime.Now.AddMinutes(1),
             }
         };
 
 
-        //return the thread safe created object by Lazy loading
-        public UserData GetInstance
-        {
-            get
-            {
-                //If two thread accesing it will access one after another
-                lock (new object())
-                {
-                    if (_userData == null)
-                    {
-                        return _userData = new UserData();
-                    }
-                    else
-                    {
-                        return _userData;
-                    }
-                }
-            }
-        }
-
+        
         //internal access withthin the Folder
         public List<UserProfile> UserProfiles
         {
